@@ -1,4 +1,5 @@
 from tkinter import *
+import math
 root=Tk()
 root.title("Calculator")
 root.geometry("260x380")
@@ -17,6 +18,34 @@ def number_button(num):
 
 def clear():
     text1.delete(0,END)
+
+def clear2():
+    n=text1.get()
+    text1.delete(len(n)-1)
+
+def sqrt():
+    s=int(text1.get())
+    f=math.sqrt(s)
+    clear()
+    text1.insert(0,f)
+
+def factorial():
+    s=int(text1.get())
+    f=1
+    for i in range(1,s+1):
+        f*=i
+    clear()
+    text1.insert(0,f)
+
+def equal():
+    s=text1.get()
+    try:
+        result=eval(s)
+        clear()
+        text1.insert(0,result)
+    except Exception:
+        clear()
+        text1.insert(0,"Error")
     
 btn1=Button(frame2,text='(', width=5,bd=4,height=2,bg='MintCream',command = lambda : number_button('('))
 btn1.grid(row=2)
@@ -24,7 +53,7 @@ btn2=Button(frame2,text=')', width=5,bd=4,height=2,bg='MintCream',command = lamb
 btn2.grid(row=2,column=1)
 btn3=Button(frame2,text='^', width=5,bd=4,height=2,bg='MintCream',command = lambda : number_button('**'))
 btn3.grid(row=2, column=3)
-btn4=Button(frame2,text='M+', width=5,bd=4,height=2,bg='MintCream')
+btn4=Button(frame2,text='n!', width=5,bd=4,height=2,bg='MintCream',command=factorial)
 btn4.grid(row=2,column=4)
 btn5=Button(frame2,text='M-', width=5,bd=4,height=2,bg='MintCream')
 btn5.grid(row=2,column=5)
@@ -33,11 +62,12 @@ btn6=Button(frame2,text='←', width=5,bd=4,height=2,bg='GhostWhite')
 btn6.grid(row=3,pady=2)
 btn7=Button(frame2,text='CE', width=5,bd=4,height=2,bg='GhostWhite',command=clear)
 btn7.grid(row=3,column=1)
-btn8=Button(frame2,text='C', width=5,bd=4,height=2,bg='GhostWhite')
+btn8=Button(frame2,text='C', width=5,bd=4,height=2,bg='GhostWhite', command=clear2)
 btn8.grid(row=3, column=3)
 btn9=Button(frame2,text='±', width=5,bd=4,height=2,bg='GhostWhite')
 btn9.grid(row=3,column=4)
-btn10=Button(frame2,text='√', width=5,bd=4,height=2,bg='MintCream')
+btn10=Button(frame2,text='√', width=5,bd=4,height=2,bg='MintCream',command=sqrt
+             )
 btn10.grid(row=3,column=5)
 
 btn11=Button(frame2,text='7', width=5,bd=4,height=2,bg='WhiteSmoke',command = lambda : number_button(7))
@@ -70,7 +100,7 @@ btn23=Button(frame2,text='3', width=5,bd=4,height=2,bg='WhiteSmoke',command = la
 btn23.grid(row=6, column=3)
 btn24=Button(frame2,text='-', width=5,bd=4,height=2,bg='GhostWhite',command = lambda : number_button('-'))
 btn24.grid(row=6,column=4)
-btn25=Button(frame2,text='=', width=5,bd=4,height=5,bg='MintCream')
+btn25=Button(frame2,text='=', width=5,bd=4,height=5,bg='MintCream',command=equal)
 btn25.grid(row=6,column=5,rowspan=2)
 btn26=Button(frame2,text='0', width=12,bd=4,height=2,bg='WhiteSmoke',command = lambda : number_button(0))
 btn26.grid(row=7,columnspan=2)
