@@ -16,12 +16,29 @@ text1.pack(side=RIGHT, anchor=N)
 def number_button(num):
     text1.insert(END, str(num))
 
+def pi():
+    text1.insert(END,math.pi)
+
 def clear():
     text1.delete(0,END)
 
 def clear2():
     n=text1.get()
     text1.delete(len(n)-1)
+
+def sin():
+    try:
+        text1.insert(END, "=" + str(math.sin(int(text1.get()))))
+    except Exception:
+        clear()
+        text1.insert(0,"Error")
+
+def cos():
+    try:
+        text1.insert(END, "=" + str(math.cos(int(text1.get()))))
+    except Exception:
+        clear()
+        text1.insert(0,"Error")
 
 def sqrt():
     try:
@@ -64,7 +81,7 @@ btn3=Button(frame2,text='^', width=5,bd=4,height=2,bg='MintCream',command = lamb
 btn3.grid(row=2, column=3)
 btn4=Button(frame2,text='n!', width=5,bd=4,height=2,bg='MintCream',command=factorial)
 btn4.grid(row=2,column=4)
-btn5=Button(frame2,text='M-', width=5,bd=4,height=2,bg='MintCream')
+btn5=Button(frame2,text='π', width=5,bd=4,height=2,bg='MintCream',command=pi)
 btn5.grid(row=2,column=5)
 
 btn6=Button(frame2,text='←', width=5,bd=4,height=2,bg='GhostWhite')
@@ -73,10 +90,9 @@ btn7=Button(frame2,text='CE', width=5,bd=4,height=2,bg='GhostWhite',command=clea
 btn7.grid(row=3,column=1)
 btn8=Button(frame2,text='C', width=5,bd=4,height=2,bg='GhostWhite', command=clear2)
 btn8.grid(row=3, column=3)
-btn9=Button(frame2,text='±', width=5,bd=4,height=2,bg='GhostWhite')
+btn9=Button(frame2,text='sin', width=5,bd=4,height=2,bg='GhostWhite', comman=sin)
 btn9.grid(row=3,column=4)
-btn10=Button(frame2,text='√', width=5,bd=4,height=2,bg='MintCream',command=sqrt
-             )
+btn10=Button(frame2,text='cos', width=5,bd=4,height=2,bg='MintCream',command =cos)
 btn10.grid(row=3,column=5)
 
 btn11=Button(frame2,text='7', width=5,bd=4,height=2,bg='WhiteSmoke',command = lambda : number_button(7))
@@ -98,7 +114,7 @@ btn18=Button(frame2,text='6', width=5,bd=4,height=2,bg='WhiteSmoke',command = la
 btn18.grid(row=5, column=3)
 btn19=Button(frame2,text='*', width=5,bd=4,height=2,bg='GhostWhite',command = lambda : number_button('*'))
 btn19.grid(row=5,column=4,padx=1)
-btn20=Button(frame2,text='1/x', width=5,bd=4,height=2,bg='MintCream')
+btn20=Button(frame2,text='√', width=5,bd=4,height=2,bg='MintCream', command=sqrt)
 btn20.grid(row=5,column=5)
 
 btn21=Button(frame2,text='1', width=5,bd=4,height=2,bg='WhiteSmoke',command = lambda : number_button(1))
